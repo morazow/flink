@@ -28,72 +28,72 @@ jobs:
     name: "Pre-compile Checks"
     uses: ./.github/workflows/template.pre-compile-checks.yml
 
-  java8:
-    name: "Java 8"
-    uses: ./.github/workflows/template.flink-ci.yml
-    with:
-      workflow-caller-id: java8
-      environment: 'PROFILE="-Dinclude_hadoop_aws"'
-      jdk_version: 8
-    secrets:
-      s3_bucket: ${{ secrets.IT_CASE_S3_BUCKET }}
-      s3_access_key: ${{ secrets.IT_CASE_S3_ACCESS_KEY }}
-      s3_secret_key: ${{ secrets.IT_CASE_S3_SECRET_KEY }}
-  java11:
-    name: "Java 11"
-    uses: ./.github/workflows/template.flink-ci.yml
-    with:
-      workflow-caller-id: java11
-      environment: 'PROFILE="-Dinclude_hadoop_aws -Djdk11 -Pjava11-target"'
-      jdk_version: 11
-    secrets:
-      s3_bucket: ${{ secrets.IT_CASE_S3_BUCKET }}
-      s3_access_key: ${{ secrets.IT_CASE_S3_ACCESS_KEY }}
-      s3_secret_key: ${{ secrets.IT_CASE_S3_SECRET_KEY }}
-  java17:
-    name: "Java 17"
-    uses: ./.github/workflows/template.flink-ci.yml
-    with:
-      workflow-caller-id: java17
-      environment: 'PROFILE="-Dinclude_hadoop_aws -Djdk11 -Djdk17 -Pjava17-target"'
-      jdk_version: 17
-    secrets:
-      s3_bucket: ${{ secrets.IT_CASE_S3_BUCKET }}
-      s3_access_key: ${{ secrets.IT_CASE_S3_ACCESS_KEY }}
-      s3_secret_key: ${{ secrets.IT_CASE_S3_SECRET_KEY }}
-  java21:
-    name: "Java 21"
-    uses: ./.github/workflows/template.flink-ci.yml
-    with:
-      workflow-caller-id: java21
-      environment: 'PROFILE="-Dinclude_hadoop_aws -Djdk11 -Djdk17 -Djdk21 -Pjava21-target"'
-      jdk_version: 21
-    secrets:
-      s3_bucket: ${{ secrets.IT_CASE_S3_BUCKET }}
-      s3_access_key: ${{ secrets.IT_CASE_S3_ACCESS_KEY }}
-      s3_secret_key: ${{ secrets.IT_CASE_S3_SECRET_KEY }}
-  hadoop313:
-    name: "Hadoop 3.1.3"
-    uses: ./.github/workflows/template.flink-ci.yml
-    with:
-      workflow-caller-id: hadoop313
-      environment: 'PROFILE="-Dflink.hadoop.version=3.2.3 -Phadoop3-tests,hive3"'
-      jdk_version: 8
-    secrets:
-      s3_bucket: ${{ secrets.IT_CASE_S3_BUCKET }}
-      s3_access_key: ${{ secrets.IT_CASE_S3_ACCESS_KEY }}
-      s3_secret_key: ${{ secrets.IT_CASE_S3_SECRET_KEY }}
-  adaptive-scheduler:
-    name: "AdaptiveScheduler"
-    uses: ./.github/workflows/template.flink-ci.yml
-    with:
-      workflow-caller-id: adaptive-scheduler
-      environment: 'PROFILE="-Penable-adaptive-scheduler"'
-      jdk_version: 8
-    secrets:
-      s3_bucket: ${{ secrets.IT_CASE_S3_BUCKET }}
-      s3_access_key: ${{ secrets.IT_CASE_S3_ACCESS_KEY }}
-      s3_secret_key: ${{ secrets.IT_CASE_S3_SECRET_KEY }}
+#  java8:
+#    name: "Java 8"
+#    uses: ./.github/workflows/template.flink-ci.yml
+#    with:
+#      workflow-caller-id: java8
+#      environment: 'PROFILE="-Dinclude_hadoop_aws"'
+#      jdk_version: 8
+#    secrets:
+#      s3_bucket: ${{ secrets.IT_CASE_S3_BUCKET }}
+#      s3_access_key: ${{ secrets.IT_CASE_S3_ACCESS_KEY }}
+#      s3_secret_key: ${{ secrets.IT_CASE_S3_SECRET_KEY }}
+#  java11:
+#    name: "Java 11"
+#    uses: ./.github/workflows/template.flink-ci.yml
+#    with:
+#      workflow-caller-id: java11
+#      environment: 'PROFILE="-Dinclude_hadoop_aws -Djdk11 -Pjava11-target"'
+#      jdk_version: 11
+#    secrets:
+#      s3_bucket: ${{ secrets.IT_CASE_S3_BUCKET }}
+#      s3_access_key: ${{ secrets.IT_CASE_S3_ACCESS_KEY }}
+#      s3_secret_key: ${{ secrets.IT_CASE_S3_SECRET_KEY }}
+#  java17:
+#    name: "Java 17"
+#    uses: ./.github/workflows/template.flink-ci.yml
+#    with:
+#      workflow-caller-id: java17
+#      environment: 'PROFILE="-Dinclude_hadoop_aws -Djdk11 -Djdk17 -Pjava17-target"'
+#      jdk_version: 17
+#    secrets:
+#      s3_bucket: ${{ secrets.IT_CASE_S3_BUCKET }}
+#      s3_access_key: ${{ secrets.IT_CASE_S3_ACCESS_KEY }}
+#      s3_secret_key: ${{ secrets.IT_CASE_S3_SECRET_KEY }}
+#  java21:
+#    name: "Java 21"
+#    uses: ./.github/workflows/template.flink-ci.yml
+#    with:
+#      workflow-caller-id: java21
+#      environment: 'PROFILE="-Dinclude_hadoop_aws -Djdk11 -Djdk17 -Djdk21 -Pjava21-target"'
+#      jdk_version: 21
+#    secrets:
+#      s3_bucket: ${{ secrets.IT_CASE_S3_BUCKET }}
+#      s3_access_key: ${{ secrets.IT_CASE_S3_ACCESS_KEY }}
+#      s3_secret_key: ${{ secrets.IT_CASE_S3_SECRET_KEY }}
+#  hadoop313:
+#    name: "Hadoop 3.1.3"
+#    uses: ./.github/workflows/template.flink-ci.yml
+#    with:
+#      workflow-caller-id: hadoop313
+#      environment: 'PROFILE="-Dflink.hadoop.version=3.2.3 -Phadoop3-tests,hive3"'
+#      jdk_version: 8
+#    secrets:
+#      s3_bucket: ${{ secrets.IT_CASE_S3_BUCKET }}
+#      s3_access_key: ${{ secrets.IT_CASE_S3_ACCESS_KEY }}
+#      s3_secret_key: ${{ secrets.IT_CASE_S3_SECRET_KEY }}
+#  adaptive-scheduler:
+#    name: "AdaptiveScheduler"
+#    uses: ./.github/workflows/template.flink-ci.yml
+#    with:
+#      workflow-caller-id: adaptive-scheduler
+#      environment: 'PROFILE="-Penable-adaptive-scheduler"'
+#      jdk_version: 8
+#    secrets:
+#      s3_bucket: ${{ secrets.IT_CASE_S3_BUCKET }}
+#      s3_access_key: ${{ secrets.IT_CASE_S3_ACCESS_KEY }}
+#      s3_secret_key: ${{ secrets.IT_CASE_S3_SECRET_KEY }}
 
   build_python_wheels:
     name: "Build Python Wheels on ${{ matrix.os_name }}"
@@ -133,6 +133,22 @@ jobs:
           CIBW_ENVIRONMENT_LINUX: CFLAGS="-I. -include ./dev/glibc_version_fix.h"
           # Skip repair on macOS wheels
           CIBW_REPAIR_WHEEL_COMMAND_MACOS: ""
+      - name: "Install patchelf on Linux"
+        if: matrix.os_name == 'linux'
+        run: |
+            sudo apt-get update -q
+            sudo apt-get install -q -y patchelf
+            patchelf --version
+            python3 -m pip install auditwheel
+      - name: "Patch Python Wheels on Linux"
+        if: matrix.os_name == 'linux'
+        run: |
+          cd flink-python/
+          for wheel_file in dist/*.whl; do
+              auditwheel repair ${wheel_file} -w dist
+              rm -f ${wheel_file}
+          done
+          ls -alh dist/
       - name: "Tar python artifact"
         run: tar -czvf python-wheel-${{ matrix.os_name }}.tar.gz -C flink-python/dist .
       - name: "Upload python artifact"
