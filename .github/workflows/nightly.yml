@@ -139,16 +139,6 @@ jobs:
             sudo apt-get update -q
             sudo apt-get install -q -y patchelf
             patchelf --version
-            python3 -m pip install auditwheel
-      - name: "Patch Python Wheels on Linux"
-        if: matrix.os_name == 'linux'
-        run: |
-          cd flink-python/
-          for wheel_file in dist/*.whl; do
-              auditwheel repair ${wheel_file} -w dist
-              rm -f ${wheel_file}
-          done
-          ls -alh dist/
       - name: "Tar python artifact"
         run: tar -czvf python-wheel-${{ matrix.os_name }}.tar.gz -C flink-python/dist .
       - name: "Upload python artifact"
