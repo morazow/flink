@@ -129,16 +129,15 @@ jobs:
         env:
           # Skip -musllinux on Linux builds
           CIBW_SKIP: "*-musllinux*"
+          # Use manylinux2014 on Linux
+          CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
+          CIBW_BEFORE_ALL_LINUX: pip install patchelf
           CIBW_BEFORE_BUILD_LINUX: pip install -r flink-python/dev/dev-requirements.txt
           CIBW_ENVIRONMENT_LINUX: CFLAGS="-I. -include ./dev/glibc_version_fix.h"
+          # Run auditwheel on Linux
+          CIBW_REPAIR_WHEEL_COMMAND_LINUX: "auditwheel repair -w {dest_dir} {wheel}"
           # Skip repair on macOS wheels
           CIBW_REPAIR_WHEEL_COMMAND_MACOS: ""
-      - name: "Install patchelf on Linux"
-        if: matrix.os_name == 'linux'
-        run: |
-            sudo apt-get update -q
-            sudo apt-get install -q -y patchelf
-            patchelf --version
       - name: "Tar python artifact"
         run: tar -czvf python-wheel-${{ matrix.os_name }}.tar.gz -C flink-python/dist .
       - name: "Upload python artifact"
